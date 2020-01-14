@@ -1,6 +1,7 @@
 import { BotModule } from "@akaiv/core";
 import { GoogleMapApi } from "./google-map-api";
 import { ForecastCommand } from "./forecast-command";
+import { AirCommand } from "./air-command";
 
 /*
  * Created on Sat Oct 26 2019
@@ -22,6 +23,7 @@ export class WeatherModule extends BotModule {
         this.googleMapApi = new GoogleMapApi(googleMapApiKey);
 
         this.CommandManager.addCommand(new ForecastCommand(this.googleMapApi, darkSkyApiKey));
+        this.CommandManager.addCommand(new AirCommand(this.googleMapApi, airvisualApiKey));
     }
 
     get Name() {

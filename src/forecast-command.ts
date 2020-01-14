@@ -55,16 +55,14 @@ export class ForecastCommand implements CommandInfo {
             e.Channel.sendText('적절한 사용법: ' + this.Usage);
             return;
         }
-        
-        e.Channel.sendText('날씨 데이터 받아오는중...');
 
         let geoInfoList;
         
         try {
             geoInfoList = (await this.googleMapApi.getGeometryInfo(e.RawArgument));
-        } catch(e) {
+        } catch(ex) {
             e.Channel.sendText(`위치정보를 받아오는 도중 오류가 발생했습니다.`);
-            logger.error(`Error while requesting place geocode. place: ${e.RawArgument}. ${e}`);
+            logger.error(`Error while requesting place geocode. place: ${e.RawArgument}. ${ex}`);
             return;
         }
 
@@ -102,9 +100,9 @@ export class ForecastCommand implements CommandInfo {
                     infoText += '\n\nPowered by Dark Sky https://darksky.net/poweredby/'
 
                     e.Channel.sendText(infoText);
-                } catch(e) {
+                } catch(ex) {
+                    logger.error(`Error while receving forecast. place: ${geoInfo.formattedAddress || e.RawArgument}. ${ex}`);
                     e.Channel.sendText(`기상정보를 받아오는 도중 오류가 발생했습니다.`);
-                    logger.error(`Error while receving forecast. place: ${geoInfo.formattedAddress || e.RawArgument}. ${e}`);
                 }
 
                 break;

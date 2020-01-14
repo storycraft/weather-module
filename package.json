@@ -1,7 +1,7 @@
 {
-  "name": "${moduleName}-module",
+  "name": "weather-module",
   "version": "1.0.0",
-  "description": "write description here",
+  "description": "Provide weather informations",
   "main": "dist/index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha -r ts-node/register ./tests/*.test.ts",
@@ -18,6 +18,6 @@
     "typescript": "^3.6.3"
   },
   "dependencies": {
-    "@akaiv/core": "^1.0.5"
+    "@akaiv/core": "^1.2.6"
   }
 }

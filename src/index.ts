@@ -1,1 +1,3 @@
-export { ExampleModule as default } from "./example-module";
+export { GoogleMapApi } from "./google-map-api";
+
+export { WeatherModule as default } from "./weather-module";

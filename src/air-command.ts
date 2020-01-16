@@ -7,13 +7,13 @@ import { GoogleMapApi } from "./google-map-api";
  * Copyright (c) storycraft. Licensed under the MIT Licence.
  */
 
-const UNITS: any = { //object containing units information
-    "p2": "ugm3", //pm2.5
-    "p1": "ugm3", //pm10
-    "o3": "ppb", //Ozone O3
-    "n2": "ppb", //Nitrogen dioxide NO2 
-    "s2": "ppb", //Sulfur dioxide SO2 
-    "co": "ppm" //Carbon monoxide CO 
+const NAME: any = { //object containing units information
+    "p2": "PM2.5 초미세먼지", //pm2.5
+    "p1": "PM10 미세먼지", //pm10
+    "o3": "오존", //Ozone O3
+    "n2": "이산화 질소", //Nitrogen dioxide NO2 
+    "s2": "이산화 황", //Sulfur dioxide SO2 
+    "co": "일산화탄소" //Carbon monoxide CO 
 }
 
 export class AirCommand implements CommandInfo {
@@ -71,7 +71,7 @@ export class AirCommand implements CommandInfo {
                     let currentPollution = data['data']['current']['pollution'];
 
                     let infoText: string = `${geoInfo.formattedAddress || e.RawArgument}의 미세먼지 정보\n\n`;
-                    infoText += `AQI: ${currentPollution['aqius']} (${UNITS[currentPollution['mainus']]})`;
+                    infoText += `주요 오염물질: ${NAME[currentPollution['mainus']]}\nAQI: ${currentPollution['aqius']}`;
 
                     infoText += `\n\nPowered by Airvisual`;
 

@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@akaiv/core");
-const UNITS = {
-    "p2": "ugm3",
-    "p1": "ugm3",
-    "o3": "ppb",
-    "n2": "ppb",
-    "s2": "ppb",
-    "co": "ppm"
+const NAME = {
+    "p2": "PM2.5 초미세먼지",
+    "p1": "PM10 미세먼지",
+    "o3": "오존",
+    "n2": "이산화 질소",
+    "s2": "이산화 황",
+    "co": "일산화탄소"
 };
 class AirCommand {
     constructor(googleMapApi, airvisualApiKey) {
@@ -51,7 +51,7 @@ class AirCommand {
                 try {
                     let currentPollution = data['data']['current']['pollution'];
                     let infoText = `${geoInfo.formattedAddress || e.RawArgument}의 미세먼지 정보\n\n`;
-                    infoText += `AQI: ${currentPollution['aqius']} (${UNITS[currentPollution['mainus']]})`;
+                    infoText += `주요 오염물질: ${NAME[currentPollution['mainus']]}\nAQI: ${currentPollution['aqius']}`;
                     infoText += `\n\nPowered by Airvisual`;
                     e.Channel.sendText(infoText);
                 }
